@@ -7,10 +7,10 @@ import com.google.common.collect.Maps;
 public enum RedisType {
 
     // 单节点模式
-    SINGLE("Single"),
+    SINGLE("SINGLE"),
 
     // 集群模式
-    CLUSTER("Cluster");
+    CLUSTER("CLUSTER");
 
     private String mode;
 
