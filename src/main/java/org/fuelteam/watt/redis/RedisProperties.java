@@ -1,4 +1,4 @@
-package org.fuelteam.watt.redis.jedis;
+package org.fuelteam.watt.redis;
 
 import java.util.List;
 
@@ -6,16 +6,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "spring.jedis")
-public class JedisProperties {
+@ConfigurationProperties(prefix = "spring.redis")
+public class RedisProperties {
 
     private List<String> nodes;
 
-    private Integer connectionTimeout;
-
-    private Integer soTimeout;
-
-    private Integer maxAttempts;
+    private Integer database = 0;
 
     private String password;
 
@@ -25,35 +21,35 @@ public class JedisProperties {
 
     private Integer maxIdle;
 
+    private Integer minIdle;
+
     private Integer maxWaitMillis;
 
     private boolean testOnBorrow;
-    
+
     private boolean testOnCreate;
-    
+
     private boolean testOnReturn;
-    
+
     private boolean testWhileIdle;
-    
+
     private boolean blockWhenExhausted;
-    
+
     private int numTestsPerEvictionRun;
-    
+
     private long softMinEvictableIdleTimeMillis;
-    
+
     private long timeBetweenEvictionRunsMillis;
-    
+
     private long minEvictableIdleTimeMillis;
 
-    private boolean clusterMode;
-
-    private boolean viewable;
+    private String mode;
 
     private String host;
 
     private Integer port;
-    
-    private Integer timeout;
+
+    private long commandTimeoutMillis;
 
     public List<String> getNodes() {
         return nodes;
@@ -63,28 +59,12 @@ public class JedisProperties {
         this.nodes = nodes;
     }
 
-    public Integer getConnectionTimeout() {
-        return connectionTimeout;
+    public Integer getDatabase() {
+        return database;
     }
 
-    public void setConnectionTimeout(Integer connectionTimeout) {
-        this.connectionTimeout = connectionTimeout;
-    }
-
-    public Integer getSoTimeout() {
-        return soTimeout;
-    }
-
-    public void setSoTimeout(Integer soTimeout) {
-        this.soTimeout = soTimeout;
-    }
-
-    public Integer getMaxAttempts() {
-        return maxAttempts;
-    }
-
-    public void setMaxAttempts(Integer maxAttempts) {
-        this.maxAttempts = maxAttempts;
+    public void setDatabase(Integer database) {
+        this.database = database;
     }
 
     public String getPassword() {
@@ -117,6 +97,14 @@ public class JedisProperties {
 
     public void setMaxIdle(Integer maxIdle) {
         this.maxIdle = maxIdle;
+    }
+
+    public Integer getMinIdle() {
+        return minIdle;
+    }
+
+    public void setMinIdle(Integer minIdle) {
+        this.minIdle = minIdle;
     }
 
     public Integer getMaxWaitMillis() {
@@ -199,20 +187,12 @@ public class JedisProperties {
         this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
     }
 
-    public boolean isClusterMode() {
-        return clusterMode;
+    public String getMode() {
+        return mode;
     }
 
-    public void setClusterMode(boolean clusterMode) {
-        this.clusterMode = clusterMode;
-    }
-
-    public boolean isViewable() {
-        return viewable;
-    }
-
-    public void setViewable(boolean viewable) {
-        this.viewable = viewable;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public String getHost() {
@@ -231,11 +211,11 @@ public class JedisProperties {
         this.port = port;
     }
 
-    public Integer getTimeout() {
-        return timeout;
+    public long getCommandTimeoutMillis() {
+        return commandTimeoutMillis;
     }
 
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
+    public void setCommandTimeoutMillis(long commandTimeoutMillis) {
+        this.commandTimeoutMillis = commandTimeoutMillis;
     }
 }

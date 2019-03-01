@@ -13,8 +13,7 @@ spring:
     max-wait-millis: 300
     test-on-borrow: true
     password: 0Y0j8Zeu8iis1qIYHJUoUy2OsUD3u57JGeKosvfRKFxm75hpLa
-    cluster-mode: false
-    viewable: true
+    mode: single
     host: 127.0.0.1
     port: 7000
     nodes:
