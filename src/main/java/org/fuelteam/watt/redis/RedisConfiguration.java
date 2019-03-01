@@ -33,11 +33,12 @@ public class RedisConfiguration {
         RedisTemplate<String, Serializable> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new StringRedisSerializer());
-        template.setConnectionFactory(lettuceConnectionFactory());
+        template.setConnectionFactory(redisConnectionFactory());
         return template;
     }
 
-    private RedisConnectionFactory lettuceConnectionFactory() {
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
         if (RedisType.CLUSTER.getMode().equalsIgnoreCase(redisProperties.getMode())) {
             RedisClusterConfiguration rcc = new RedisClusterConfiguration();
             Set<RedisNode> nodes = Sets.newHashSet();
